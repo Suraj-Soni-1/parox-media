@@ -1,0 +1,93 @@
+/* Container that masks overflow */
+.scroll-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 18px 0;
+  background: transparent; /* keep hero background consistent */
+}
+
+/* The moving track (we double items in JS for seamless loop) */
+.scroll-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 20px;
+  animation: scrollLeft var(--scroll-speed, 28s) linear infinite;
+  will-change: transform;
+}
+
+/* Each card */
+.card {
+  position: relative;
+  width: 220px;            /* mobile default */
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #111;        /* placeholder behind images */
+}
+
+/* Image inside card */
+.scroll-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Optional overlay text (empty by default) */
+.card-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+/* Pause when user hovers the scroller */
+.scroll-container:hover .scroll-track {
+  animation-play-state: paused;
+}
+
+/* Keyframes: translate -50% (works because we duplicated items) */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
+/* Responsive card sizes */
+@media (min-width: 640px) {
+  .card {
+    width: 260px;
+    height: 160px;
+  }
+}
+@media (min-width: 1024px) {
+  .card {
+    width: 360px;
+    height: 200px;
+  }
+  /* On large screens, slow the scroll a bit */
+  :root {
+    --scroll-speed: 34s;
+  }
+}
+
+/* make sure the scroller area doesn't cover foreground text:
+   increase top padding for hero content via the component (py-40) */
+.hero-scroller-wrap {
+  pointer-events: auto;
+}
+
+/* (optional) reduce opacity so hero text reads easily */
+.hero-scroller-wrap .scroll-track {
+  opacity: 0.85;
+}
