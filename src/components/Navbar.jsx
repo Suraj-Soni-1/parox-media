@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // ✅ import Link
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -60,9 +61,11 @@ export default function Navbar() {
 
       {/* Right - Button (desktop only) */}
       {isDesktop ? (
-        <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-          Let’s Work Together
-        </button>
+        <Link to="/book" onClick={() => setMenuOpen(false)}>
+          <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+            Let’s Work Together
+          </button>
+        </Link>
       ) : (
         // Mobile Hamburger
         <button
@@ -86,12 +89,11 @@ export default function Navbar() {
         <ul className="absolute top-16 left-0 w-full bg-white flex flex-col items-center space-y-4 py-6 shadow-md z-50">
           {links}
           <li>
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
-            >
-              Let’s Work Together
-            </button>
+            <Link to="/book" onClick={() => setMenuOpen(false)}>
+              <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+                Let’s Work Together
+              </button>
+            </Link>
           </li>
         </ul>
       )}
