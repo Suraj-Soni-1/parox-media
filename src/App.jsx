@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Logos from "./components/Logos";
 import Stats from "./components/Stats";
-// import Services from "./components/Services"; // <- keep commented-out if it duplicates ServiceBlocks
+// import Services from "./components/Services"; // <- keep commented if duplicate
 import Process from "./components/Process";
 import CaseStudies from "./components/CaseStudies";
 import Testimonials from "./components/Testimonials";
@@ -30,19 +30,17 @@ export default function App() {
           <Stats />
         </section>
 
-        {/* Personal brand feature row (single render) */}
+        {/* Personal brand feature row */}
         <section id="personal">
           <PersonalBrand />
         </section>
 
-        {/* Service blocks (single render) */}
+        {/* Service blocks */}
         <section id="service-blocks">
           <ServiceBlocks />
         </section>
 
-        {/* If Services.jsx contains different content, you can include it.
-            If it repeats the same three service blocks, DO NOT include it,
-            otherwise you'll see the repeated content. */}
+        {/* Uncomment only if Services.jsx is DIFFERENT from ServiceBlocks */}
         {/* <section id="services">
           <Services />
         </section> */}
